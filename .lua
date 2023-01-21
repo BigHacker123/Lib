@@ -44,10 +44,10 @@ local library = {
         ['indicator'] = 950;
         ['window'] = 1000;
         ['dropdown'] = 1200;
-        ['colorpicker'] = 1100;
+        ['colorpicker'] = 700;
         ['watermark'] = 1300;
         ['notification'] = 1400;
-        ['cursor'] = 15001;
+        ['cursor'] = 1500;
     },
     stats = {
         ['fps'] = 0;

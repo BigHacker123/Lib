@@ -41,13 +41,13 @@ local library = {
     tweens = {};
     theme = {};
     zindexOrder = {
-        ['indicator'] = 9510;
+        ['indicator'] = 950;
         ['window'] = 1000;
         ['dropdown'] = 1200;
         ['colorpicker'] = 1100;
         ['watermark'] = 1300;
         ['notification'] = 1400;
-        ['cursor'] = 1500;
+        ['cursor'] = 15001;
     },
     stats = {
         ['fps'] = 0;

@@ -702,17 +702,17 @@ function library:init()
 
     local tooltipObjects = {};
 
-    makefolder("Anomiss")
-    makefolder("Anomiss"..'/assets')
-    makefolder("Anomiss"..'/'..self.gamename)
-    makefolder("Anomiss"..'/'..self.gamename..'/configs');
-    makefolder("Anomiss"..'/'..self.gamename..'/scripts');
-    makefolder("Anomiss"..'/'..self.gamename..'/autoexec');
-    if not isfile("Anomiss"..'_friendlist.txt') then
-        writefile("Anomiss"..'_friendlist.txt', http:JSONEncode({}))
+    makefolder("beamed.Solutions")
+    makefolder("beamed.Solutions"..'/assets')
+    makefolder("beamed.Solutions"..'/'..self.gamename)
+    makefolder("beamed.Solutions"..'/'..self.gamename..'/configs');
+    makefolder("beamed.Solutions"..'/'..self.gamename..'/scripts');
+    makefolder("beamed.Solutions"..'/'..self.gamename..'/autoexec');
+    if not isfile("beamed.Solutions"..'_friendlist.txt') then
+        writefile("beamed.Solutions"..'_friendlist.txt', http:JSONEncode({}))
     end
-    if not isfile("Anomiss"..'_enemylist.txt') then
-        writefile("Anomiss"..'_enemylist.txt', http:JSONEncode({}))
+    if not isfile("beamed.Solutions"..'_enemylist.txt') then
+        writefile("beamed.Solutions"..'_enemylist.txt', http:JSONEncode({}))
     end
 
     function self:SetTheme(theme)
@@ -723,8 +723,8 @@ function library:init()
     end
 
     function self:GetConfig(name)
-        if isfile("Anomiss"..'/'..self.gamename..'/configs/'..name..self.fileext) then
-            return readfile("Anomiss"..'/'..self.gamename..'/configs/'..name..self.fileext);
+        if isfile("beamed.Solutions"..'/'..self.gamename..'/configs/'..name..self.fileext) then
+            return readfile("beamed.Solutions"..'/'..self.gamename..'/configs/'..name..self.fileext);
         end
     end
 
@@ -806,7 +806,7 @@ function library:init()
                     cfg[flag] = option.selected;
                 end
             end
-            writefile("Anomiss"..'/'..self.gamename..'/configs/'..name..self.fileext, http:JSONEncode(cfg));
+            writefile("beamed.Solutions"..'/'..self.gamename..'/configs/'..name..self.fileext, http:JSONEncode(cfg));
         end)
 
         if s then
@@ -4657,7 +4657,7 @@ function library:init()
         self.watermark = {
             objects = {};
             text = {
-                {"Anomiss", true},
+                {"beamed.Solutions", true},
                 {localplayer.Name, false},
                 {localplayer.DisplayName, false},
                 {'0 fps', true},
@@ -4789,7 +4789,7 @@ function library:CreateSettingsTab(menu)
 
     local function refreshConfigs()
         library.options.selectedconfig:ClearValues();
-        for _,v in next, listfiles("Anomiss"..'/'..self.gamename..'/configs') do
+        for _,v in next, listfiles("beamed.Solutions"..'/'..self.gamename..'/configs') do
             local ext = '.'..v:split('.')[#v:split('.')];
             if ext == self.fileext then
                 library.options.selectedconfig:AddValue(v:split('\\')[#v:split('\\')]:sub(1,-#ext-1))
@@ -4808,11 +4808,11 @@ function library:CreateSettingsTab(menu)
             library:SendNotification('Config \''..library.flags.configinput..'\' already exists.', 5, c3new(1,0,0));
             return
         end
-        writefile("Anomiss"..'/'..self.gamename..'/configs/'..library.flags.configinput.. self.fileext, http:JSONEncode({}));
+        writefile("beamed.Solutions"..'/'..self.gamename..'/configs/'..library.flags.configinput.. self.fileext, http:JSONEncode({}));
         refreshConfigs()
     end}):AddButton({text = 'Delete', confirm = true, callback = function()
         if library:GetConfig(library.flags.selectedconfig) then
-            delfile("Anomiss"..'/'..self.gamename..'/configs/'..library.flags.selectedconfig.. self.fileext);
+            delfile("beamed.Solutions"..'/'..self.gamename..'/configs/'..library.flags.selectedconfig.. self.fileext);
             refreshConfigs()
         end
     end})

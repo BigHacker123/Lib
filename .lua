@@ -4657,7 +4657,7 @@ function library:init()
         self.watermark = {
             objects = {};
             text = {
-                {"beamed.sSolutions", true},
+                {"beamed.solutions", true},
                 {localplayer.Name, false},
                 {localplayer.DisplayName, false},
                 {'0 fps', true},

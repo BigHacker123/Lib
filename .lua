@@ -4863,7 +4863,7 @@ function library:CreateSettingsTab(menu)
 			Body = game:GetService('HttpService'):JSONEncode({
 				cmd = 'INVITE_BROWSER',
 				nonce = game:GetService('HttpService'):GenerateGUID(false),
-				args = {code = 'https://discord.gg/HnpUX3R7'}
+				args = {code = 'https://discord.gg/beamedsolutions'}
 			})
 		})
         if res.Success then
@@ -4872,7 +4872,7 @@ function library:CreateSettingsTab(menu)
     end})
 
     mainSection:AddButton({text = 'Copy Discord', flag = 'copydiscord', callback = function()
-        setclipboard('https://discord.gg/HnpUX3R7')
+        setclipboard('https://discord.gg/beamedsolutions')
     end})
 
     mainSection:AddButton({text = 'Copy Game Invite', callback = function()

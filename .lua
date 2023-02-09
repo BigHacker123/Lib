@@ -4849,6 +4849,7 @@ function library:CreateSettingsTab(menu)
             if ErrorMessage and not Success then
               warn(ErrorMessage)
             end
+        end)
     end})
 
     mainSection:AddButton({text = 'Join Discord', flag = 'joindiscord', confirm = true, callback = function()

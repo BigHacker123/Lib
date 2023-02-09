@@ -4821,6 +4821,8 @@ function library:CreateSettingsTab(menu)
 
     refreshConfigs()
 
+    mainSection:AddSeparator({text = game:GetService("Players").LocalPlayer.PlayerGui.UI.ServerInfo.Text});
+
     mainSection:AddBind({text = 'Open / Close', flag = 'togglebind', nomouse = true, noindicator = true, default = Enum.KeyCode.LeftAlt, bind = Enum.KeyCode.LeftAlt, callback = function()
         library:SetOpen(not library.open)
     end});

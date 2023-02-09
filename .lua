@@ -702,17 +702,17 @@ function library:init()
 
     local tooltipObjects = {};
 
-    makefolder("beamed.Solutions")
-    makefolder("beamed.Solutions"..'/assets')
-    makefolder("beamed.Solutions"..'/'..self.gamename)
-    makefolder("beamed.Solutions"..'/'..self.gamename..'/configs');
-    makefolder("beamed.Solutions"..'/'..self.gamename..'/scripts');
-    makefolder("beamed.Solutions"..'/'..self.gamename..'/autoexec');
-    if not isfile("beamed.Solutions"..'_friendlist.txt') then
-        writefile("beamed.Solutions"..'_friendlist.txt', http:JSONEncode({}))
+    makefolder("beamed.solutions")
+    makefolder("beamed.solutions"..'/assets')
+    makefolder("beamed.solutions"..'/'..self.gamename)
+    makefolder("beamed.solutions"..'/'..self.gamename..'/configs');
+    makefolder("beamed.solutions"..'/'..self.gamename..'/scripts');
+    makefolder("beamed.solutions"..'/'..self.gamename..'/autoexec');
+    if not isfile("beamed.solutions"..'_friendlist.txt') then
+        writefile("beamed.solutions"..'_friendlist.txt', http:JSONEncode({}))
     end
-    if not isfile("beamed.Solutions"..'_enemylist.txt') then
-        writefile("beamed.Solutions"..'_enemylist.txt', http:JSONEncode({}))
+    if not isfile("beamed.solutions"..'_enemylist.txt') then
+        writefile("beamed.solutions"..'_enemylist.txt', http:JSONEncode({}))
     end
 
     function self:SetTheme(theme)
@@ -723,8 +723,8 @@ function library:init()
     end
 
     function self:GetConfig(name)
-        if isfile("beamed.Solutions"..'/'..self.gamename..'/configs/'..name..self.fileext) then
-            return readfile("beamed.Solutions"..'/'..self.gamename..'/configs/'..name..self.fileext);
+        if isfile("beamed.solutions"..'/'..self.gamename..'/configs/'..name..self.fileext) then
+            return readfile("beamed.solutions"..'/'..self.gamename..'/configs/'..name..self.fileext);
         end
     end
 
@@ -806,7 +806,7 @@ function library:init()
                     cfg[flag] = option.selected;
                 end
             end
-            writefile("beamed.Solutions"..'/'..self.gamename..'/configs/'..name..self.fileext, http:JSONEncode(cfg));
+            writefile("beamed.solutions"..'/'..self.gamename..'/configs/'..name..self.fileext, http:JSONEncode(cfg));
         end)
 
         if s then
@@ -4657,7 +4657,7 @@ function library:init()
         self.watermark = {
             objects = {};
             text = {
-                {"beamed.Solutions", true},
+                {"beamed.sSolutions", true},
                 {localplayer.Name, false},
                 {localplayer.DisplayName, false},
                 {'0 fps', true},
@@ -4789,7 +4789,7 @@ function library:CreateSettingsTab(menu)
 
     local function refreshConfigs()
         library.options.selectedconfig:ClearValues();
-        for _,v in next, listfiles("beamed.Solutions"..'/'..self.gamename..'/configs') do
+        for _,v in next, listfiles("beamed.solutions"..'/'..self.gamename..'/configs') do
             local ext = '.'..v:split('.')[#v:split('.')];
             if ext == self.fileext then
                 library.options.selectedconfig:AddValue(v:split('\\')[#v:split('\\')]:sub(1,-#ext-1))
@@ -4808,11 +4808,11 @@ function library:CreateSettingsTab(menu)
             library:SendNotification('Config \''..library.flags.configinput..'\' already exists.', 5, c3new(1,0,0));
             return
         end
-        writefile("beamed.Solutions"..'/'..self.gamename..'/configs/'..library.flags.configinput.. self.fileext, http:JSONEncode({}));
+        writefile("beamed.solutions"..'/'..self.gamename..'/configs/'..library.flags.configinput.. self.fileext, http:JSONEncode({}));
         refreshConfigs()
     end}):AddButton({text = 'Delete', confirm = true, callback = function()
         if library:GetConfig(library.flags.selectedconfig) then
-            delfile("beamed.Solutions"..'/'..self.gamename..'/configs/'..library.flags.selectedconfig.. self.fileext);
+            delfile("beamed.solutions"..'/'..self.gamename..'/configs/'..library.flags.selectedconfig.. self.fileext);
             refreshConfigs()
         end
     end})
@@ -4838,6 +4838,17 @@ function library:CreateSettingsTab(menu)
         else
             actionservice:UnbindAction('FreezeMovement');
         end
+    end})
+
+    mainSection:AddButton({text = 'Rejoin', flag = 'rejoinserver', callback = function()
+        local Rejoin = coroutine.create(function()
+            local Success, ErrorMessage = pcall(function()
+            game:GetService("TeleportService"):Teleport(game.PlaceId, plr)
+            end)
+        
+            if ErrorMessage and not Success then
+              warn(ErrorMessage)
+            end
     end})
 
     mainSection:AddButton({text = 'Join Discord', flag = 'joindiscord', confirm = true, callback = function()
